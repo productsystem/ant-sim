@@ -1,0 +1,27 @@
+#version 460 core
+layout(local_size_x = 256) in;
+
+
+layout(std430, binding = 0) buffer Particles {
+    Particle particles[];
+};
+
+uniform float dt;
+uniform float G;
+uniform uint N;
+
+void main() {
+    uint i = gl_GlobalInvocationID.x;
+    if(i >= N) return;
+
+    vec3 force = vec3(0.0);
+    for(uint j = 0; j < N; ++j) {
+        if(i == j) continue;
+        vec3 dir = particles[j].pos.xyz - particles[i].pos.xyz;
+        float distSqr = dot(dir, dir) + 1e-5;
+        force += G * particles[j].pos.w * dir / (distSqr * sqrt(distSqr));
+    }
+    vec3 accel = force; // assuming mass already in force formula
+    particles[i].vel.xyz += accel * dt;
+    particles[i].pos.xyz += particles[i].vel.xyz * dt;
+}
