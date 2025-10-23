@@ -160,6 +160,8 @@
     <ClInclude Include="shader.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="line.fs" />
+    <None Include="line.vs" />
     <None Include="nbody.comp" />
     <None Include="point.fs" />
     <None Include="point.vs" />

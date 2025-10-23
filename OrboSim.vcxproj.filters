@@ -91,5 +91,11 @@
     <None Include="nbody.comp">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="line.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="line.fs">
+      <Filter>Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
